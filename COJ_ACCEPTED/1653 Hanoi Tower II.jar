@@ -1,0 +1,38 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+/**
+ *
+ * @author LUISMO
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    //1653 Hanoi Tower II
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        int tc = sc.nextInt();
+        for(int c=0;c<tc;c++)
+        {
+            int n = sc.nextInt();        
+            BigInteger moves = new BigInteger("2");
+            for(int i =1;i<n;i++)
+            {
+                moves = moves.multiply(new BigInteger("3"));
+                moves = moves.add(new BigInteger("2"));
+            }
+            System.out.println(moves);        
+        }
+        
+        
+    }
+
+}

@@ -1,0 +1,3 @@
+SELECT  COUNTRY.Continent, AVG(CITY.Population)
+FROM    CITY INNER JOIN COUNTRY ON  CITY.CountryCode = COUNTRY.Code
+GROUP   BY COUNTRY.Continent

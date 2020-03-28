@@ -1,0 +1,33 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+/**
+ *
+ * @author Info
+ */
+import java.math.BigInteger;
+import java.util.*;
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+//1592 The Size is Not Important
+    
+        Scanner in=new Scanner(System.in);
+       int m  = in.nextInt();
+       for(int c=0;c<m;c++){
+           BigInteger bi = in.nextBigInteger();
+           BigInteger bo = in.nextBigInteger();
+           System.out.println(bi.multiply(bo));
+       }
+        
+        
+        }
+    }
+

@@ -1,0 +1,49 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.io.BufferedReader;
+import java.math.BigInteger;
+import java.util.Scanner;
+/**
+ *
+ * @author Administrador
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+	 
+	 //1071 Bishops
+    public static void main(String[] args) {
+        
+     Scanner sc = new Scanner(System.in);     
+     
+        while(sc.hasNext()){
+            BigInteger bi = sc.nextBigInteger();
+            if(bi.equals(new BigInteger("1"))) System.out.println("1");
+            else System.out.println(bi.multiply(new BigInteger("2")).subtract(new BigInteger("2")));            
+        }
+        
+    }
+    
+    //Metodo del Factorial
+    public static BigInteger Factorial(int n){
+        if(n == 0 || n== 1) return new BigInteger("1");
+        
+        BigInteger bi = new BigInteger(String.valueOf(n));
+        for(int c=n-1;c> 1;c--){
+            bi = bi.multiply(new BigInteger(String.valueOf(c)));
+            
+        }
+        return  bi;
+        
+    }
+    
+    
+    
+
+}
+

@@ -1,0 +1,30 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+import java.math.BigInteger;
+import java.util.*;
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       Scanner in=new Scanner(System.in);
+       
+       for(int c=0;c<10;c++){
+       BigInteger bS = in.nextBigInteger();
+       BigInteger bI = in.nextBigInteger();
+       
+       BigInteger bN = bS.subtract(bI).divide(new BigInteger("2"));
+       
+       System.out.println(bN.add(bI));
+       System.out.println(bN);
+       }
+       }
+    }
+
+

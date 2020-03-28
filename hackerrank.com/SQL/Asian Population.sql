@@ -1,0 +1,4 @@
+SELECT  SUM(cit.POPULATION)
+FROM    CITY cit 
+        INNER JOIN COUNTRY ctry ON cit.COUNTRYCODE = ctry.CODE
+        AND ctry.CONTINENT = 'Asia'

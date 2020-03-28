@@ -1,0 +1,82 @@
+/*
+	Author: Luis Manuel Díaz Barón (LUISMO)
+	Problem: https://www.spoj.com/problems/MAIN72/
+	Online Judge: SPOJ
+	Idea: DP. Knapsack
+*/
+#include<bits/stdc++.h>
+// Types
+#define ll long long
+#define ull unsigned long long
+// IO
+#define sf scanf
+#define pf printf
+#define mkp make_pair
+#define fi first
+#define se second
+#define endl "\n"
+
+using namespace std;
+
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+const ll inf = 1e16 + 3;
+const int mod = 1e9 + 7;
+const int lim = 1e5 + 2;
+
+int tc, N, x;
+bool dp[lim];
+
+
+void solve()
+{
+	cin >> tc;	
+	while(tc-->0)
+	{
+		memset(dp, 0, sizeof dp);
+		dp[0] = true;
+		cin >> N;
+		for(int i = 0; i < N; i++)
+		{
+			cin >> x;
+			for(int nmb = lim - 1; nmb - x >= 0; nmb--)
+			{
+				if(dp[nmb - x])									
+					dp[nmb] = true;				
+			}
+		}
+
+		ll answ = 0;
+		for(int i = 1; i < lim; i++)
+			if(dp[i])
+				answ += i;
+		cout << answ << endl;
+	}
+}
+
+void fastIO()
+{
+	cin.sync_with_stdio(false);
+	cin.tie(0);
+}
+
+void IO()
+{
+	if(fopen("d:\\lmo.in","r") != NULL)
+	{
+		freopen("d:\\lmo.in","r",stdin);
+	}
+	else if(fopen("/media/Beijing/lmo.in","r") != NULL)
+	{
+		freopen("/media/Beijing/lmo.in", "r", stdin);
+	}
+}
+
+int main()
+{
+	IO();
+
+	fastIO();
+
+	solve();
+}
