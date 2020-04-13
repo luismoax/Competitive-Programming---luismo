@@ -40,7 +40,11 @@ void fastIO()
 
 void IO()
 {
-	if(fopen("d:\\lmo.in","r") != NULL)
+	if(fopen("c:\\Users\\LUISMO\\lmo.in","r") != NULL)
+	{
+		freopen("c:\\Users\\LUISMO\\lmo.in","r",stdin);
+	}
+	else if(fopen("d:\\lmo.in","r") != NULL)
 	{
 		freopen("d:\\lmo.in","r",stdin);
 	}
