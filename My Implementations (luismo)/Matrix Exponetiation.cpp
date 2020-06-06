@@ -1,3 +1,4 @@
+
 struct matrix
 {
     int row, col;
@@ -50,13 +51,11 @@ matrix identity(int d)
         ret.mt[i][i] = 1;
     return ret;
 }
-// identity matrix (needs to be instanciated)
-matrix iden;
 
 matrix binPow(matrix b, ll ex)
 {
     if(ex == 0)
-        return iden;
+        return identity(b.col);
     if(ex == 1)
         return b;
     matrix aux = binPow(b, ex / 2);
