@@ -2,7 +2,7 @@
 	Author: Luis Manuel Díaz Barón (LUISMO)
 	Problem:
 	Link:
-	Online Judge:	
+	Online Judge: 
 	Idea:
 */
 #include<bits/stdc++.h>
