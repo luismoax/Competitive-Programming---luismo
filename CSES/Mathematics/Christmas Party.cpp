@@ -1,0 +1,80 @@
+/*
+	Author: Luis Manuel Díaz Barón (LUISMO)
+	Problem: Christmas Party
+	Link: https://cses.fi/problemset/task/1717
+	Online Judge: CSES
+	Idea: Nice Recurrence: F(K) = (K-1) * F(K-1) + (K-1)*F(K-2)
+*/
+#include<bits/stdc++.h>
+// Types
+#define ll long long
+#define ull unsigned long long
+#define ld long double
+// IO
+#define sf scanf
+#define pf printf
+#define mkp make_pair
+#define fi first
+#define se second
+#define endl "\n"
+ 
+using namespace std;
+ 
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+const ll inf = 1e7 + 3;
+const int mod = 1e9 + 7;
+const int lim = 1e6 + 3;
+
+ll n;
+
+ll F[lim];
+
+void solve()
+{
+	cin >> n;
+    // Base
+	F[0] = 0;
+	F[1] = 0;
+	F[2] = 1;
+	F[3] = 2;
+	// Recurrence: F(K) = (K-1) * F(K-1) + (K-1)*F(K-2)
+	for(int i = 4; i <= n; i++)
+	{
+		ll k1 = ((i - 1) * F[i-1]) % mod;
+		ll k2 = ((i - 1) * F[i-2]) % mod;		
+		F[i] = (k1 + k2) % mod;		
+	}
+	cout << F[n];	
+}
+ 
+void fastIO()
+{
+	cin.sync_with_stdio(false);
+	cin.tie(0);
+}
+ 
+void IO()
+{
+	if(fopen("c:\\Users\\LUISMO\\lmo.in","r") != NULL)
+	{
+		freopen("c:\\Users\\LUISMO\\lmo.in","r",stdin);
+	}
+	else if(fopen("d:\\lmo.in","r") != NULL)
+	{
+		freopen("d:\\lmo.in","r",stdin);
+	}
+	else if(fopen("media/Beijing/lmo.in","r") != NULL)
+	{
+		freopen("/media/Beijing/lmo.in", "r", stdin);
+	}
+}
+ 
+int main()
+{
+	IO();
+ 
+	fastIO();
+ 
+	solve();
+}
