@@ -111,7 +111,7 @@ void solve()
 		k--;
 		update(0, 0, n - 1, k, x);
 
-		cout << t[0].bestSum << endl;
+		cout << max(0ll, t[0].bestSum) << endl;
 	}
 }
  
