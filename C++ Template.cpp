@@ -39,9 +39,10 @@ void fastIO()
  
 void IO()
 {
-	if(fopen("c:\\Users\\LUISMO\\lmo.in","r") != NULL)
+
+	if(fopen("c:\\Competitive Programming\\lmo.in","r") != NULL)
 	{
-		freopen("c:\\Users\\LUISMO\\lmo.in","r",stdin);
+		freopen("c:\\Competitive Programming\\lmo.in","r",stdin);
 	}
 	else if(fopen("d:\\lmo.in","r") != NULL)
 	{
