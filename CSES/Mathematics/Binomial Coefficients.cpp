@@ -26,17 +26,17 @@ const ll inf = 1e7 + 3;
 const int mod = 1e9 + 7;
 const int lim = 1e6 + 3;
 
-int n, a, b;
+int tc, a, b;
 
 // binary exponentiation
-ll binPow(ll b, ll exp)
+ll binPow(ll bs, ll exp)
 {
 	if(exp == 0)
 		return 1;
-	ll aux = binPow(b, exp / 2);
+	ll aux = binPow(bs, exp / 2);
 	aux = (aux * aux) % mod;
 	if(exp % 2 == 1)
-		aux = (aux * b) % mod;
+		aux = (aux * bs) % mod;
 	return aux;	
 }
 
@@ -54,16 +54,23 @@ void preProcess()
 	}
 }
 
+// Combinations (N, K)
+ll Combinations(int n, int k)
+{
+	ll dem = (invModFact[k] * invModFact[n - k]) % mod;
+	ll answ = (fact[n] * dem ) % mod;
+    return answ;
+}
+
 void solve()
 {
 	preProcess();
-	cin >> n;
-	while(n-- > 0)
+	cin >> tc;
+	while(tc-- > 0)
 	{
 		cin >> a >> b;
-		ll dem = (invModFact[b] * invModFact[a - b]) % mod;
-		ll answ = (fact[a] * dem ) % mod;
-		cout << answ << endl;
+		ll answ = Combinations(a, b);
+		cout << answ << endl;		
 	}	
 }
  
@@ -75,9 +82,9 @@ void fastIO()
  
 void IO()
 {
-	if(fopen("c:\\Users\\LUISMO\\lmo.in","r") != NULL)
+	if(fopen("c:\\Competitive Programming\\lmo.in","r") != NULL)
 	{
-		freopen("c:\\Users\\LUISMO\\lmo.in","r",stdin);
+		freopen("c:\\Competitive Programming\\lmo.in","r",stdin);
 	}
 	else if(fopen("d:\\lmo.in","r") != NULL)
 	{
