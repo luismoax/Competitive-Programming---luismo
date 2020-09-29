@@ -1,21 +1,13 @@
--- Tough one
-;WITH AllDates (Date)
+;WITH EndDates (Date)
 AS
 (
-    -- Start Dates
+    -- End Dates
     SELECT  p.End_Date AS [Date]
     FROM    Projects p
             LEFT OUTER JOIN Projects ri ON DATEDIFF(day,  p.End_Date, ri.End_Date) = 1
     WHERE   ri.End_Date IS NULL
-
-    UNION
-    -- End Dates
-    SELECT  p.Start_Date AS [Date]
-    FROM    Projects p
-            LEFT OUTER JOIN Projects le ON DATEDIFF(day, le.Start_Date, p.Start_Date) = 1
-    WHERE   le.Start_Date IS NULL
 ),
-BeginDates (Date)
+StartDates (Date)
 AS
 (
     -- Start Dates
@@ -24,17 +16,18 @@ AS
             LEFT OUTER JOIN Projects le ON DATEDIFF(day, le.Start_Date, p.Start_Date) = 1
     WHERE   le.Start_Date IS NULL    
 ),
-BegMinDiff ([Date], [Diff])
+-- project start and end
+ProjectIntervals ([Start], [End])
 AS
-(    
-    SELECT      aa.[Date], 
-                MIN(DATEDIFF(day, aa.[Date], bb.[Date])) [Diff]
-    FROM        AllDates aa
-                CROSS JOIN AllDates bb
-    WHERE       DATEDIFF(day, aa.[Date], bb.[Date]) > 0
-    GROUP BY    aa.[Date]
+(
+    -- Cross Join starts, with ends (with start < end) and pick the minimun end which is after each start
+    SELECT      sd.[Date], MIN(ed.[Date])
+    FROM        StartDates sd
+                CROSS JOIN
+                EndDates ed
+    WHERE       sd.[Date] <= ed.[Date]
+    GROUP BY    sd.[Date] -- group  by starting dates
 )
-SELECT  bd.[Date] [Start], DATEADD(day, bmd.[Diff], bd.[Date]) [End]
-FROM    BegMinDiff bmd
-        INNER JOIN BeginDates bd ON bmd.[Date] = bd.[Date]
-ORDER BY DATEDIFF(day, DATEADD(day, bmd.[Diff], bd.[Date]), bd.[Date]) DESC, bd.[Date]
+SELECT      *
+FROM        ProjectIntervals pi
+ORDER BY    DATEDIFF(day, pi.[Start], pi.[End]), pi.[Start] -- order by given criteria
