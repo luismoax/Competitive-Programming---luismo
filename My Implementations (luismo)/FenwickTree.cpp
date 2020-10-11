@@ -47,9 +47,9 @@ struct FenwickTree
 	int len;
 	ll * tree;
 
-	FenwickTree()
+	FenwickTree(int sz)
 	{
-		len = 1000002;
+		len = sz;
 		tree = new ll[len];
 		fill(tree, tree + len , 0);
 	}
@@ -73,5 +73,4 @@ struct FenwickTree
 	{
         return retrive(b) - retrive(a - 1);
 	}
-
 };
