@@ -62,4 +62,19 @@ struct Manacher
                 center = i;
         }
     }
+
+	bool isPalindrome(int le, int ri)
+	{
+		int idxLe = le * 2 + 2;
+		int idxRi = ri * 2 + 2;
+
+		int mid = (idxLe + idxRi) / 2;
+
+		int wing = table[mid];
+
+		if(wing / 2 >= (ri - le + 1) / 2)
+			return true;
+
+		return false;
+	}
 };
