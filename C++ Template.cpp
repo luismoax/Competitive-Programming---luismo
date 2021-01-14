@@ -14,8 +14,8 @@
 #define sf scanf
 #define pf printf
 #define mkp make_pair
-#define x first
-#define y second
+#define fi first
+#define se second
 #define endl "\n"
  
 using namespace std;
