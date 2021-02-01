@@ -16,6 +16,7 @@
 #define mkp make_pair
 #define fi first
 #define se second
+#define M_PI 2.0 * acos(0)
 #define endl "\n"
  
 using namespace std;
