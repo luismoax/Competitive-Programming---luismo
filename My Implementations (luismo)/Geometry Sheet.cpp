@@ -59,3 +59,50 @@ bool intersect(point s1, point e1, point s2, point e2)
 	}
 	return false;
 }
+
+
+struct polarPoint
+{
+	double r, angle;
+	polarPoint(){}
+	polarPoint(double r, double angle):r(r), angle(angle) {}
+	void print()
+	{
+		cerr << "[" << r << "," << angle << "]" << endl;
+	}
+	bool operator < (const polarPoint& other)
+	{
+		if(angle == other.angle)
+			return r < other.r;
+		return angle < other.angle;
+	}
+};
+
+int quadrant(point p)
+{
+	int quad = 0;
+	if(p.x > 0 && p.y > 0)
+		quad = 1;
+	if(p.x < 0 && p.y > 0)
+		quad = 2;
+	else if(p.x < 0 && p.y < 0)
+		quad = 3;
+	else if(p.x > 0 && p.y < 0)
+		quad = 4;
+	return quad;
+}
+// polar point from origin
+polarPoint toPolar(point p)
+{
+	double angle = atan(p.y/p.x);
+	// adjust taking care of quadrants
+	double quad = quadrant(p);
+	if(quad == 2 || p.y == 0 && p.x < 0)
+		angle += M_PI;
+	if(quad == 3)
+		angle += M_PI;
+	if(quad == 4 || p.y < 0 && p.x == 0)
+		angle += 2*M_PI;	
+	double r =sqrt(p.x*p.x + p.y*p.y);
+	return polarPoint(r, angle);
+}
