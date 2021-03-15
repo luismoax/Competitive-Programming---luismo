@@ -45,13 +45,12 @@ FenwickTree * ft;
 struct FenwickTree
 {
 	int len;
-	ll * tree;
+	vector<ll> tree;
 
 	FenwickTree(int sz)
 	{
 		len = sz;
-		tree = new ll[len];
-		fill(tree, tree + len , 0);
+		tree.resize(len, 0);
 	}
 
 	inline int lowBit(int i){return i & -i;}
