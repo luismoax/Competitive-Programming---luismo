@@ -3,9 +3,11 @@ struct SegmentTree
 {
 	vector<int> tsum;
 	vector<int> lazy;
+	int sz;
 	SegmentTree(){}
 	SegmentTree(int len)
 	{
+		sz = len;
 		tsum.resize(len << 2, 0);
 		lazy.resize(len << 2, 0);
 	}
@@ -49,6 +51,11 @@ struct SegmentTree
 		tsum[idx] = tsum[le] + tsum[ri];
 	}
 
+	void update(int QL, int QR, ll upd)
+	{
+		update(0, 0, sz - 1, QL, QR, upd);
+	}
+
 	int retrieve(int idx, int L, int R, int QL, int QR)
 	{		
 		// pointers
@@ -64,5 +71,10 @@ struct SegmentTree
 		int sLe = retrieve(le, L, mid, QL, QR);
 		int sRi = retrieve(ri, mid + 1, R, QL, QR);
 		return sLe + sRi;
+	}
+
+	int retrieve(int QL, int QR)
+	{
+		return retrieve(0, 0, sz - 1, QL, QR);
 	}
 };
