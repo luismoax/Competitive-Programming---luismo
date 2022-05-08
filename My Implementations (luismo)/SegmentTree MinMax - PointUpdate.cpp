@@ -5,11 +5,18 @@ struct SegmentTree
 
 	vector<int> mx;
 	vector<int> mn;
+	int SZ;
 
 	SegmentTree(int len)
 	{
+		SZ = len;
 		mx.resize(len << 2 + 3, 0);
 		mn.resize(len << 2 + 3, 0);
+	}
+
+	void update(int ii, int upd)
+	{
+		update(0, 0, SZ - 1, ii, upd);
 	}
 
 	void update(int idx, int L, int R, int ii, int upd)
@@ -28,6 +35,11 @@ struct SegmentTree
 		mn[idx] = min(mn[le], mn[ri]);
 	}
 
+	pii retrieve(int QL, int QR)
+	{
+		return retrieve(0, 0, SZ - 1, QL, QR);
+	}
+
 	pii retrieve(int idx, int L, int R, int QL, int QR)
 	{
 		if(L >= QL && R <= QR)
@@ -44,5 +56,4 @@ struct SegmentTree
 		pii ret = mkp(max(s1.first, s2.first), min(s1.second, s2.second));
 		return ret;
 	}
-
 };
