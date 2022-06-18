@@ -18,6 +18,10 @@ struct DisjointSet
 	{
 		int stA = setOf(a);
 		int stB = setOf(b);
+
+		if(stA == stB)
+			return;
+
 		if(ds[stA] < ds[stB])
 		{
 			ds[stA] += ds[stB];
