@@ -1,24 +1,33 @@
+
 // >> GRAPH
 vector<int> adj[lim];
+bool visited[lim];
 int level[lim]; // parenthood
 int pi[lim];
 // << GRAPH
 
 void DFS(int idx)
 {
+	visited[idx] = 1;
 	for(int i = 0; i < adj[idx].size(); i++)
 	{
 		int nxt = adj[idx][i];
-		level[nxt] = level[idx] + 1;
-		DFS(nxt);
+		if(!visited[nxt]) 
+		{	
+			level[nxt] = level[idx] + 1;
+			pi[nxt] = idx;
+			DFS(nxt);
+		}
 	}
 }
 
 // >> LCA
 int binLift[lim][31];
 
-int buidlLCA()
+int buidlLCA(int root)
 {
+	level[root] = 0;
+	DFS(root);
 	// we initialize every element in binLift with -1
 	for (int i = 0; i < N; i++)
 		for (int j = 0; (1 << j) < N; j++)
@@ -47,9 +56,9 @@ int LCA(int a, int b)
 
 	// we find the ancestor of node b situated on the same level of a	
 	for (int i = lg; i >= 0; i--)
-		if (level[ binLift[b][i] ] >= level[a])
+		if (binLift[b][i] != -1 && level[ binLift[b][i] ] >= level[a])
 			b = binLift[b][i];
-
+	
 	// if a was direct ancestor of b (b got to climb to become a)
 	if (a == b)
 		return a;
@@ -62,6 +71,13 @@ int LCA(int a, int b)
 			a = binLift[a][i];
 		}
 	return pi[b];
+}
+
+int dist(int a, int b)
+{
+	int lca = LCA(a, b);
+	int dist = ((level[a] + level[b]) - (2 * level[lca])) + 1;
+	return dist;
 }
 
 // << LCA
