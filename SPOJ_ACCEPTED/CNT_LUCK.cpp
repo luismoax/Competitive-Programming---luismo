@@ -9,7 +9,6 @@
 // Types
 #define ll long long
 #define ull unsigned long long
-#define i64 unsigned long long int
 #define ld long double
 // IO
 #define sf scanf
@@ -30,7 +29,8 @@ const int lim = 65;
 
 int tc;
 
-i64 pascal[lim][lim];
+ull pascal[lim][lim];
+ull dp[lim][lim];
 
 void preProcess()
 {
@@ -43,12 +43,12 @@ void preProcess()
 	}
 }
 
-i64 Combinations(int n, int k)
+ull Combinations(int n, int k)
 {
 	return pascal[n][k];
 }
 
-vector<int> toBin(i64 x)
+vector<int> toBin(ull x)
 {
 	vector<int> ret;
 	while(x > 0)
@@ -60,7 +60,7 @@ vector<int> toBin(i64 x)
 	return ret;
 }
 
-i64 F(i64 x)
+ull F(ull x)
 {
 	vector<int> binary = toBin(x);
 
@@ -68,7 +68,7 @@ i64 F(i64 x)
 	for(int i = 0; i < binary.size(); i++)
 		active += binary[i];
 
-	i64 ret = 0;
+	ull ret = 0;
 	if(active == 4 || active == 7 || active == 44 || active == 47)
 		ret++;
 	
@@ -97,11 +97,11 @@ void solve()
 	cin >> tc;
 	while(tc-- > 0)
 	{
-		i64 a, b;
+		ull a, b;
 		cin >> a >> b;
 
-		i64 ri = F(b);
-		i64 le = (a == 0) ? 0 : F(a - 1);
+		ull ri = F(b);
+		ull le = (a == 0) ? 0 : F(a - 1);
 
 		cout << ri - le << endl;		
 	}
