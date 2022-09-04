@@ -8,7 +8,7 @@
 #include<bits/stdc++.h>
 // Types
 #define ll long long
-#define ull unsigned long long
+#define i64 unsigned long long
 #define ld long double
 // IO
 #define sf scanf
