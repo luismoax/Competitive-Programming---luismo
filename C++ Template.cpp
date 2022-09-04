@@ -40,18 +40,11 @@ void fastIO()
  
 void IO()
 {
+	const char * route = "c:\\Users\\LUISMO\\lmo.in";
 
-	if(fopen("c:\\Competitive Programming\\lmo.in","r") != NULL)
+	if(fopen(route, "r") != NULL)
 	{
-		freopen("c:\\Competitive Programming\\lmo.in","r",stdin);
-	}
-	else if(fopen("d:\\lmo.in","r") != NULL)
-	{
-		freopen("d:\\lmo.in","r",stdin);
-	}
-	else if(fopen("media/Beijing/lmo.in","r") != NULL)
-	{
-		freopen("/media/Beijing/lmo.in", "r", stdin);
+		freopen(route,"r",stdin);
 	}
 }
  
