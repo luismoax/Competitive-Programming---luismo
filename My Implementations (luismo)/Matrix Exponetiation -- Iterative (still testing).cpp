@@ -1,4 +1,3 @@
-
 struct matrix
 {
     int row, col;
@@ -52,15 +51,18 @@ matrix identity(int d)
     return ret;
 }
 
-matrix binPow(matrix b, ll exp)
+matrix powBin(matrix b, ll exp)
 {
+    if(exp == 0)
+        return identity(b.row);
+
 	matrix ret = identity(b.row);
-	matrix cur = b;
+	matrix aux = b;
 	while(exp > 0)
 	{
 		if(exp % 2 == 1)
-			ret = (cur * ret);		
-		cur = (cur * cur);		
+			ret = (aux * ret);		
+		aux = (aux * aux);		
 		exp >>= 1;
 	}
 	return ret;
