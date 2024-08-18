@@ -1,6 +1,6 @@
 /*
 	Author: Luis Manuel Díaz Barón (LUISMO)
-	Problem: Sliding Median
+	Problem: Sliding Window Median
 	Link: https://cses.fi/problemset/task/1076
 	Online Judge: CSES
 	Idea: Nice problem. Sort + Map-Compress + Binary Search over a Fencwick Tree
